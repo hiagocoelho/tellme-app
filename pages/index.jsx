@@ -3,7 +3,7 @@ import Menu from '../components/Menu'
 
 export default function Home() {
   return (
-    <div>
+    <div className='bg-gray-900 h-screen'>
       <Head>
         <title>tell.me</title>
         <link rel="icon" href="/favicon.ico" />

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Menu () {
     return (
-        <div className='flex justify-between py-1.5 px-3.5 bg-gray-900'>
+        <div className='flex justify-between py-1.5 px-3.5 bg-gray-800'>
             <Link href='/'>
                 <a className='text-white'>text.me</a>
             </Link>
