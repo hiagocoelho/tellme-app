@@ -1,25 +1,31 @@
 import React, { useState } from 'react'
 
-import firebase from 'firebase/app';
-
-import 'firebase/auth';
-import 'firebase/firestore';
-import 'firebase/analytics';
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/analytics'
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDgJ2owlGYZGH0STvjeBYmmaBWZ_lPk-9Q",
-    authDomain: "tellme-app-e0def.firebaseapp.com",
-    projectId: "tellme-app-e0def",
-    storageBucket: "tellme-app-e0def.appspot.com",
-    messagingSenderId: "23172765752",
-    appId: "1:23172765752:web:5fe1d9c15759c55cd52ecd",
-    measurementId: "G-5E25B0B3Y7"
-  };
+    apiKey: "AIzaSyChTP3z-EsR49PLiM5V6U30tOdxGdx6xc4",
+    authDomain: "tellme-89144.firebaseapp.com",
+    projectId: "tellme-89144",
+    storageBucket: "tellme-89144.appspot.com",
+    messagingSenderId: "491322420817",
+    appId: "1:491322420817:web:0bf975a401b6ee709e1270",
+    measurementId: "G-SHNMPJQ5WR"
+}
 
-!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig)
+    const auth = firebase.auth()
+    const firestore = firebase.firestore()
+    const analytics = firebase.analytics()
+ } else {
+    firebase.app()
+ }
 
 export default function Chat () {
     const [formValue, setFormValue] = useState('')
