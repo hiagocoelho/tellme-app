@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import Menu from '../components/Menu'
+import Chat from '../components/Chat'
 
 export default function Home() {
   return (
-    <div>
+    <div className='bg-gray-900 h-screen'>
       <Head>
         <title>tell.me</title>
         <link rel="icon" href="/favicon.ico" />
@@ -11,7 +12,7 @@ export default function Home() {
 
       <main>
         <Menu />
-        <p>Home</p>
+        <Chat />
       </main>
 
     </div>
