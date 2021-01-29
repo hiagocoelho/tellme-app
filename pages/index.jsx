@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Menu from '../components/Menu'
+import Chat from '../components/Chat'
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
 
       <main>
         <Menu />
-        <p>Home</p>
+        <Chat />
       </main>
 
     </div>
