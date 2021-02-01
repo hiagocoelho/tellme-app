@@ -36,8 +36,17 @@ export default function Chat () {
     
     const sendMessage = async(e) => {
         e.preventDefault()
+        
+        const { uid } = auth.currentUser
+
         if(formValue !== '') {
-            console.log(formValue)
+            await messagesRef.add({
+                text: formValue,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                uid,
+            })
+
+            setFormValue('')
         } else {
             return
         }
@@ -47,7 +56,7 @@ export default function Chat () {
         <div>
             {user ? (
                 <>
-                    {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+                    {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} currentUserUid={auth.currentUser.uid}/>)}
                     <form onSubmit={sendMessage}>
                     <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
                     <button type='submit'>Send</button>
