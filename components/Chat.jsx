@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import firebase from "firebase/app";
+import ChatMessage from './ChatMessage'
 
 import 'firebase/auth'
 import 'firebase/firestore'
@@ -28,6 +29,10 @@ export default function Chat () {
     const [formValue, setFormValue] = useState('')
 
     const [user] = useAuthState(auth)
+
+    const messagesRef = firestore.collection('messages');
+    const query = messagesRef.orderBy('createdAt').limit(25);
+    const [messages] = useCollectionData(query, { idField: 'id' });
     
     const sendMessage = async(e) => {
         e.preventDefault()
@@ -42,6 +47,7 @@ export default function Chat () {
         <div>
             {user ? (
                 <>
+                    {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
                     <form onSubmit={sendMessage}>
                     <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
                     <button type='submit'>Send</button>
