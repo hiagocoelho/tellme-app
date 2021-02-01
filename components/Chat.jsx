@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import firebase from "firebase/app";
 import ChatMessage from './ChatMessage'
 
@@ -34,6 +34,8 @@ export default function Chat () {
     const query = messagesRef.orderBy('createdAt').limit(25);
     const [messages] = useCollectionData(query, { idField: 'id' });
     
+    const dummy = useRef()
+
     const sendMessage = async(e) => {
         e.preventDefault()
         
@@ -47,6 +49,7 @@ export default function Chat () {
             })
 
             setFormValue('')
+            dummy.current.scrollIntoView({ behavior: 'smooth' })            
         } else {
             return
         }
@@ -54,16 +57,19 @@ export default function Chat () {
 
     return (
         <div>
-            {user ? (
+            <section>
+                {user ? (
                 <>
-                    {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} currentUserUid={auth.currentUser.uid}/>)}
-                    <form onSubmit={sendMessage}>
-                    <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
-                    <button type='submit'>Send</button>
-                    </form>
-                    <SignOut />
+                {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} currentUserUid={auth.currentUser.uid}/>)}
+                <div ref={dummy}></div>
+                <form onSubmit={sendMessage}>
+                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
+                <button type='submit'>Send</button>
+                </form>
+                <SignOut />
                 </>
-            ) : <SignIn />}
+                ) : <SignIn />}
+            </section>
         </div>
     )
 }
