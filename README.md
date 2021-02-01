@@ -1,11 +1,24 @@
-tell.me
+## tellme-app
 
-## Getting Started
+tell&#46;me is a messaging app focused on temporary chat rooms and simple messages.
 
+Made with:
+* React
+* Next.js
+* styled-components
+* Firebase
+* :heart:
+
+# Quick Setup
+
+First, install the server modules:
+```bash
+npm install
+# or
 yarn install
+```
 
-First, run the development server:
-
+Then, run the development server:
 ```bash
 npm run dev
 # or
